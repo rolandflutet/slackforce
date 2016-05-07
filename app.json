@@ -29,7 +29,7 @@
     "CASE_TOKEN": {
         "description": "Slack token for the case slash command",
         "value":""
-    }
+    },
     "CURR_ENVT": {
         "description": "Current Salesforce environment: 'production' or 'sandbox'",
         "value":""
