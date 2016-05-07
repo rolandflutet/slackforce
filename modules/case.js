@@ -2,6 +2,14 @@ var nforce = require('nforce'),
     org = require('./auth').org,
 
     CASE_TOKEN = process.env.CASE_TOKEN;
+    CURR_ENVT = process.env.CURR_ENVT;
+    SFDC_URL= 'https://test.salesforce.com/'
+
+    if (CURR_ENVT=='production') {
+    	SFDC_URL='https://login.salesforce.com/';
+    }
+    
+    
 
 function execute(req, res) {
 
@@ -28,7 +36,7 @@ function execute(req, res) {
             var fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
-            fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
+            fields.push({title: "Link", value: SFDC_URL + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
                 text: "A new case has been created:",
