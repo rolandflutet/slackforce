@@ -3,14 +3,15 @@ var nforce = require('nforce'),
     CLIENT_ID = process.env.CLIENT_ID,
     CLIENT_SECRET = process.env.CLIENT_SECRET,
     USER_NAME = process.env.USER_NAME,
-    PASSWORD = process.env.PASSWORD;
+    PASSWORD = process.env.PASSWORD,
+    CURR_ENVT = process.env.CURR_ENVT;
 
     org = nforce.createConnection({
       clientId: CLIENT_ID,
       clientSecret: CLIENT_SECRET,
       redirectUri: 'http://localhost:3000/oauth/_callback',
 //      environment: 'production',
-	  environment: 'sandbox',
+	  environment: CURR_ENVT,
       mode: 'single'
     });
 
