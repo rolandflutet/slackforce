@@ -17,6 +17,12 @@ function execute(req, res) {
         res.send("Invalid token");
         return;
     }
+    
+    org.login() {
+        if (err) {
+            console.error(err);
+            res.send("An authentication error occurred");
+        }};
 
     var params = req.body.text.split(":");
     var subject = params[0];
