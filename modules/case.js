@@ -1,6 +1,6 @@
 var nforce = require('nforce'),
     org = require('./auth').org,
-    login = require('./auth').login
+    login = require('./auth').login,
 
     CASE_TOKEN = process.env.CASE_TOKEN;
     CURR_ENVT = process.env.CURR_ENVT;
