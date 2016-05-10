@@ -4,7 +4,8 @@ var nforce = require('nforce'),
     CLIENT_SECRET = process.env.CLIENT_SECRET,
     USER_NAME = process.env.USER_NAME,
     PASSWORD = process.env.PASSWORD,
-    CURR_ENVT = process.env.CURR_ENVT;
+    CURR_ENVT = process.env.CURR_ENVT,
+    USER_SECURITY_TOKEN = process.env.USER_SECURITY_TOKEN;
     
     if (!CURR_ENVT) {
     	CURR_ENVT='sandbox';
@@ -21,7 +22,7 @@ var nforce = require('nforce'),
 
 function login() {
     
-    org.authenticate({ username: USER_NAME, password: PASSWORD}, function(err, resp) {
+    org.authenticate({ username: USER_NAME, password: PASSWORD, securityToken: USER_SECURITY_TOKEN}, function(err, resp) {
         if (err) {
             console.error("Authentication error");
             console.error(err);
