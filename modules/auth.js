@@ -29,14 +29,14 @@ function login() {
             console.error(err);
         } else {
             console.log("Authentication successful");
-            console.log("--------------resp-----------");
+/*            console.log("--------------resp-----------");
             console.log(resp);
 sleep.sleep(5); //sleep for 1 sec
             console.log("--------------oauth token BEFORE-----------");
             console.log(org.oauth);
 sleep.sleep(5); //sleep for 1 sec
-            org.oauth = resp;
-sleep.sleep(1); //sleep for 1 sec
+*/            org.oauth = resp;
+//sleep.sleep(1); //sleep for 1 sec
             console.log("--------------oauth token AFTER-----------");
             console.log(org.oauth);
         }
