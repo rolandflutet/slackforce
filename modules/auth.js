@@ -1,5 +1,5 @@
 var nforce = require('nforce'),
-var sleep = require('sleep');
+var sleep = require('sleep'),
 
     CLIENT_ID = process.env.CLIENT_ID,
     CLIENT_SECRET = process.env.CLIENT_SECRET,
