@@ -17,8 +17,9 @@ function execute(req, res) {
         res.send("Invalid token");
         return;
     }
-    
+    console.error("TEST1");
     org.refreshToken();
+    console.error("TEST2");
     
     var params = req.body.text.split(":");
     var subject = params[0];
