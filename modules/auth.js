@@ -31,10 +31,10 @@ function login() {
             console.log("Authentication successful");
             console.log("--------------resp-----------");
             console.log(resp);
-sleep.sleep(1); //sleep for 1 sec
+sleep.sleep(5); //sleep for 1 sec
             console.log("--------------oauth token BEFORE-----------");
             console.log(org.oauth);
-sleep.sleep(1); //sleep for 1 sec
+sleep.sleep(5); //sleep for 1 sec
             org.oauth = resp;
 sleep.sleep(1); //sleep for 1 sec
             console.log("--------------oauth token AFTER-----------");
