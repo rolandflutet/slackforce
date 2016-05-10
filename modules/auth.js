@@ -23,6 +23,10 @@ var nforce = require('nforce'),
 function login() {
     
     org.authenticate({ username: USER_NAME, password: PASSWORD, securityToken: USER_SECURITY_TOKEN}, function(err, resp) {
+        console.error("--------------err-----------");
+        console.error(err);
+        console.error("--------------resp-----------");
+        console.error(resp);
         if (err) {
             console.error("Authentication error");
             console.error(err);
