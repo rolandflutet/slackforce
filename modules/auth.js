@@ -1,4 +1,5 @@
 var nforce = require('nforce'),
+var sleep = require('sleep');
 
     CLIENT_ID = process.env.CLIENT_ID,
     CLIENT_SECRET = process.env.CLIENT_SECRET,
@@ -30,9 +31,12 @@ function login() {
             console.log("Authentication successful");
             console.log("--------------resp-----------");
             console.log(resp);
+sleep.sleep(1); //sleep for 1 sec
             console.log("--------------oauth token BEFORE-----------");
             console.log(org.oauth);
+sleep.sleep(1); //sleep for 1 sec
             org.oauth = resp;
+sleep.sleep(1); //sleep for 1 sec
             console.log("--------------oauth token AFTER-----------");
             console.log(org.oauth);
         }
