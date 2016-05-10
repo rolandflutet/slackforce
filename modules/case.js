@@ -1,6 +1,5 @@
 var nforce = require('nforce'),
     org = require('./auth').org,
-    login = require('./auth').login,
 
     CASE_TOKEN = process.env.CASE_TOKEN;
     CURR_ENVT = process.env.CURR_ENVT;
@@ -19,7 +18,8 @@ function execute(req, res) {
         return;
     }
     
-
+    org.refreshToken();
+    
     var params = req.body.text.split(":");
     var subject = params[0];
     var description = params[1];
