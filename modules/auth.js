@@ -20,6 +20,7 @@ var nforce = require('nforce'),
     });
 
 function login() {
+    
     org.authenticate({ username: USER_NAME, password: PASSWORD}, function(err, resp) {
         if (err) {
             console.error("Authentication error");
@@ -28,6 +29,9 @@ function login() {
             console.log("Authentication successful");
         }
     });
+    
+    console.error("--------------Org-----------");
+    console.error(org);
 }
 
 exports.login = login;
