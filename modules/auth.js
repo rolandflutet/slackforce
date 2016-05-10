@@ -18,7 +18,8 @@ var nforce = require('nforce'),
       clientSecret: CLIENT_SECRET,
       redirectUri: 'http://localhost:3000/oauth/_callback',
       environment: CURR_ENVT,
-      mode: 'single'
+      mode: 'single',
+      autoRefresh: true
     });
 
 function login() {
