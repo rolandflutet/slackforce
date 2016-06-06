@@ -21,6 +21,10 @@ function execute(req, res) {
     var params = req.body.text.split(":");
     var subject = params[0];
     var description = params[1];
+    
+            // BELOW IS MY DEBUG CODE
+            console.log("--------------req-----------");
+            console.log(req);    
 
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
