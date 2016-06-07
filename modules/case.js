@@ -42,13 +42,15 @@ slack = new Slack(SLACK_SECURITY_TOKEN);
  
 slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
   UserEmail = response.user.profile.email;
+
+console.log("--------------UserEmail-----------");
+console.log(UserEmail);
+console.log("--------------response-----------");
+console.log(response);
 });
  
 console.log("--------------UserEmail-----------");
 console.log(UserEmail);
-
-console.log("--------------response-----------");
-console.log(response);
 
 // HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
 // SUBJECT = "Slack case from username"
