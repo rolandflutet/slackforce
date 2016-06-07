@@ -32,6 +32,13 @@ function execute(req, res) {
 
 
 
+
+// HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
+// SUBJECT = "Slack case from username"
+// DESCRIPTION = "the whole text typed by the user"
+    var subject = "Slack case from "+req.body.user_name;
+    var description = req.body.text;
+
 // HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
 
 
@@ -52,19 +59,31 @@ console.log(response);
 console.log("--------------UserEmail-----------");
 console.log(UserEmail);
 
-// HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
-// SUBJECT = "Slack case from username"
-// DESCRIPTION = "the whole text typed by the user"
-    var subject = "Slack case from "+req.body.user_name;
-    var description = req.body.text;
-
-
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
     c.set('SuppliedEmail', UserEmail);  
+
+
+
+// HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
+
+
+var Slack = require('slack-node');
+
+slack = new Slack(SLACK_SECURITY_TOKEN);
+ 
+slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
+c.set('SuppliedEmail', response.user.profile.email);  
+  });
+ 
+
+
+// BACK TO BUSINESS AND INSERT CASE IN SFDC
+
+
 
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
