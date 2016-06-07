@@ -31,21 +31,22 @@ function login() {
         } else {
             console.log("Authentication successful");
             // BELOW IS MY DEBUG CODE
-            console.log("--------------resp-----------");
-            console.log(resp);
-            sleep.sleep(5); //sleep for 1 sec
-            console.log("--------------oauth token BEFORE-----------");
-            console.log(org.oauth);
-            sleep.sleep(5); //sleep for 1 sec
+            //console.log("--------------resp-----------");
+            //console.log(resp);
+            //sleep.sleep(5); //sleep for 1 sec
+            //console.log("--------------oauth token BEFORE-----------");
+            //console.log(org.oauth);
+            //sleep.sleep(5); //sleep for 1 sec
             org.oauth = resp;
-            sleep.sleep(1); //sleep for 1 sec
-            console.log("--------------oauth token AFTER-----------");
-            console.log(org.oauth);
+            //sleep.sleep(1); //sleep for 1 sec
+            //console.log("--------------oauth token AFTER-----------");
+            //console.log(org.oauth);
         }
     });
     
-    console.error("--------------Org-----------");
-    console.error(org);
+    // BELOW IS MY DEBUG CODE
+    // console.error("--------------Org-----------");
+    // console.error(org);
 }
 
 exports.login = login;
