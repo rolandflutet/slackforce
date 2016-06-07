@@ -33,42 +33,19 @@ function execute(req, res) {
 
 
 // HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
-/*
-app2.post('/', function (req2, res2) {
-  res2.send('POST https://slack.com/api/users.info
-                Content-type: application/json
-                {
-                    "token": "xoxp-2914796973-3709085066-48862191478-3328a54d30",
-                	"user": req.body.user_id;
-                }');
-});
-
-
- userdetails=app2.get("https://slack.com/api/users.info?token=xoxp-2914796973-3709085066-48862191478-3328a54d30&user="+req.body.user_id);
-
-app2.get('', function (req2, userdetails){
-    userdetails.send("https://slack.com/api/users.info?token=xoxp-2914796973-3709085066-48862191478-3328a54d30&user="+req.body.user_id);
-});
-*/
-
 
 
 var Slack = require('slack-node');
-
+var UserEmail = "";
  
 slack = new Slack(SLACK_SECURITY_TOKEN);
  
 slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
-  console.log(response);
+  UserEmail = response.user.profile.email;
 });
  
-slack.api('chat.postMessage', {
-  text:'hello from nodejs',
-  channel:'#general'
-}, function(err, response){
-  console.log(response);
-});
 
+  console.log(UserEmail);
 
 
 // HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
