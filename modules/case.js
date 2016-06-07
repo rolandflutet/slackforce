@@ -6,7 +6,8 @@ var nforce = require('nforce'),
 
     CASE_TOKEN = process.env.CASE_TOKEN;
     CURR_ENVT = process.env.CURR_ENVT;
-    SFDC_URL= 'https://test.salesforce.com/'
+    SLACK_SECURITY_TOKEN = process.env.SLACK_SECURITY_TOKEN;
+    SFDC_URL= 'https://test.salesforce.com/';
 
     if (CURR_ENVT=='production') {
     	SFDC_URL='https://login.salesforce.com/';
@@ -53,11 +54,11 @@ app2.get('', function (req2, userdetails){
 
 
 var Slack = require('slack-node');
-apiToken = "xoxp-2914796973-3709085066-48862191478-3328a54d30";
+
  
-slack = new Slack(apiToken);
+slack = new Slack(SLACK_SECURITY_TOKEN);
  
-slack.api("users.info", {"token": apiToken,"user":req.body.user_id }, function(err, response) {
+slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
   console.log(response);
 });
  
