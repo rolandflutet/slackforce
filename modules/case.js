@@ -41,7 +41,7 @@ var UserEmail = "";
 slack = new Slack(SLACK_SECURITY_TOKEN);
  
 slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
-  UserEmail = response.profile.email;
+  UserEmail = response.user.profile.email;
 
 //console.log("--------------UserEmail-----------");
 //console.log(UserEmail);
