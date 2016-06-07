@@ -38,6 +38,7 @@ function execute(req, res) {
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
+    c.set('SuppliedEmail', 'roland_flutet@acl.com');  
 
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
