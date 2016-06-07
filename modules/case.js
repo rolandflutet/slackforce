@@ -39,32 +39,21 @@ function execute(req, res) {
     var subject = "Slack case from "+req.body.user_name;
     var description = req.body.text;
 
-// HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
 
 
-var Slack = require('slack-node');
-var UserEmail = "";
- 
-slack = new Slack(SLACK_SECURITY_TOKEN);
- 
-slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
-  UserEmail = response.user.profile.email;
 
-//console.log("--------------UserEmail-----------");
-//console.log(UserEmail);
-console.log("--------------response-----------");
-console.log(response);
-});
- 
-console.log("--------------UserEmail-----------");
-console.log(UserEmail);
+
+
+
+
+
 
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
-    c.set('SuppliedEmail', UserEmail);  
+//    c.set('SuppliedEmail', UserEmail);  
 
 
 
