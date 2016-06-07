@@ -23,8 +23,8 @@ function execute(req, res) {
     var description = params[1];
     
             // BELOW IS MY DEBUG CODE
-            console.log("--------------req-----------");
-            console.log(req);    
+            // console.log("--------------req-----------");
+            // console.log(req);    
 
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
