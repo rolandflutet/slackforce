@@ -37,8 +37,7 @@ app2.post('/', function (req2, res2) {
                 {
                     "token": "xoxp-2914796973-3709085066-48862191478-3328a54d30",
                 	"user": req.body.user_id;
-                }
-            ');
+                }');
 });
 
 
