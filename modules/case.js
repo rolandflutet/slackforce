@@ -35,8 +35,8 @@ app2.post('/', function (req2, res2) {
   res2.send('POST https://slack.com/api/users.info
                 Content-type: application/json
                 {
-                    "token": "",
-                	"user": 
+                    "token": "xoxp-2914796973-3709085066-48862191478-3328a54d30",
+                	"user": req.body.user_id;
                 }
             ');
 });
