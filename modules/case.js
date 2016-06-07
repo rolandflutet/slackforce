@@ -43,8 +43,8 @@ slack = new Slack(SLACK_SECURITY_TOKEN);
 slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
   UserEmail = response.user.profile.email;
 
-console.log("--------------UserEmail-----------");
-console.log(UserEmail);
+//console.log("--------------UserEmail-----------");
+//console.log(UserEmail);
 console.log("--------------response-----------");
 console.log(response);
 });
@@ -64,7 +64,7 @@ console.log(UserEmail);
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
-    c.set('SuppliedEmail', 'roland_flutet@acl.com');  
+    c.set('SuppliedEmail', UserEmail);  
 
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
