@@ -33,7 +33,7 @@ APIurl = 'https://slack.com/api/users.info';
 userID = req.body.user_id;
 
 app.post(APIurl, function (req2, res2) {
-  res2.send('POST 'xoxp-2914796973-3709085066-48862191478-3328a54d30', userID');
+  res2.send('POST xoxp-2914796973-3709085066-48862191478-3328a54d30, userID');
 });
 
     // BELOW IS MY DEBUG CODE
