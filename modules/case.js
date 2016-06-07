@@ -22,14 +22,28 @@ function execute(req, res) {
     var subject = params[0];
     var description = params[1];
     
-            // BELOW IS MY DEBUG CODE
-            // console.log("--------------req-----------");
-            // console.log(req);    
+ 
 
+// HERE I'M GOINMG TO TRY AND GET MORE INFO ABOUT THE USER
+// I'm assuming I need a new app to carry the request but maybe not? Hum I'm not sure. It might mess things up.
+// Ok I'll try and use the same app and we'll see!
+
+response_url = req.body.response_url;
+APIurl = 'https://slack.com/api/users.info';
+userID = req.body.user_id;
+
+app.post(APIurl, function (req2, res2) {
+  res2.send('POST 'xoxp-2914796973-3709085066-48862191478-3328a54d30', userID');
+});
+
+    // BELOW IS MY DEBUG CODE
+    // console.log("--------------res2-----------");
+    // console.log(res2);   
+    UserEmail = res2.user.profile.email;
 // HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
 // SUBJECT = "Slack case from username"
 // DESCRIPTION = "the whole text typed by the user"
-    var subject = "Slack case from "+req.body.user_name;
+    var subject = "Slack case from "+req.body.user_name+"("+UserEmail+")";
     var description = req.body.text;
 
 
