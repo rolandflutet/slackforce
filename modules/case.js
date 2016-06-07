@@ -1,5 +1,7 @@
 var nforce = require('nforce'),
     org = require('./auth').org,
+    express2 = require('express'),
+    app2 = express();
 
     CASE_TOKEN = process.env.CASE_TOKEN;
     CURR_ENVT = process.env.CURR_ENVT;
@@ -25,6 +27,21 @@ function execute(req, res) {
             // BELOW IS MY DEBUG CODE
             // console.log("--------------req-----------");
             // console.log(req);    
+
+
+
+// HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
+app2.post('/', function (req2, res2) {
+  res2.send('POST https://slack.com/api/users.info
+                Content-type: application/json
+                {
+                    "token": "",
+                	"user": 
+                }
+            ');
+});
+
+
 
 // HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
 // SUBJECT = "Slack case from username"
