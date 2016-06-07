@@ -57,7 +57,7 @@ apiToken = "xoxp-2914796973-3709085066-48862191478-3328a54d30";
  
 slack = new Slack(apiToken);
  
-slack.api("users.list", function(err, response) {
+slack.api("users.info", {"token": apiToken,"user":req.body.user_id }, function(err, response) {
   console.log(response);
 });
  
