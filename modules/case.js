@@ -31,6 +31,8 @@ function execute(req, res) {
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
+    // TEST STATIC EMAIL TO SEE IF IT ATTACHES CONTACT PROPERLY
+    c.set('ContactEmail', 'roland_flutet@acl.com');
 
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
