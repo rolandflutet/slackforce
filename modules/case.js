@@ -26,6 +26,13 @@ function execute(req, res) {
             // console.log("--------------req-----------");
             // console.log(req);    
 
+// HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
+// SUBJECT = "Slack case from username"
+// DESCRIPTION = "the whole text typed by the user"
+    var subject = "Slack case from "+req.body.user_name;
+    var description = req.body.text;
+
+
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
     c.set('description', description);
