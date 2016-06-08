@@ -38,12 +38,12 @@ function execute(req, res) {
         // THIS CASE IS BEING CREATED FOR SOMEONE ELSE
         // HOW DO I GET THE USER ID BASED ON THE USERNAME??
         
-        username=first.slice(1)
+        var username=first.slice(1)
         
         slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response) {
             console.log();
             for (var i = 0, len = response.members.length; i < len; i++) {
-                if username == response.members[i].name {
+                if (username == response.members[i].name) {
 	                UserID = response.members[i].id;
 	                break;
                 }
