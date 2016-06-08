@@ -35,8 +35,8 @@ function execute(req, res) {
     if (first.charAt(0)=='@') {
         // THIS CASE IS BEING CREATED FOR SOMEONE ELSE
         // HOW DO I GET THE USER ID BASED ON THE USERNAME??
-         console.log("--------------first-----------"+first);
     }
+    console.log("--------------first-----------"+first);
 
 
 
