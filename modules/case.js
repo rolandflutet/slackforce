@@ -27,8 +27,8 @@ function execute(req, res) {
     var description = params[1];
     
             // BELOW IS MY DEBUG CODE
-             console.log("--------------req-----------");
-             console.log(req);    
+            // console.log("--------------req-----------");
+            // console.log(req);    
 
 
 
