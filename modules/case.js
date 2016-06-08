@@ -33,12 +33,6 @@ function execute(req, res) {
 
 
 
-// HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
-// SUBJECT = "Slack case from username"
-// DESCRIPTION = "the whole text typed by the user"
-    var subject = "Slack case from "+req.body.user_name;
-    var description = req.body.text;
-
 
 
 
@@ -60,12 +54,18 @@ slack = new Slack(SLACK_SECURITY_TOKEN);
  
 slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
 
-// BACK TO BUSINESS AND INSERT CASE IN SFDC
-// I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
 
-
+// HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
+// SUBJECT = "Slack case from username"
+// DESCRIPTION = "the whole text typed by the user"
+//    var subject = "Slack case from "+req.body.user_name;
+//    var description = req.body.text;
     var subject = "Slack case from "+response.user.profile.real_name_normalized;
     var description = req.body.text;
+
+
+// BACK TO BUSINESS AND INSERT CASE IN SFDC
+// I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
 
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
@@ -85,6 +85,7 @@ slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Link", value: SFDC_URL + resp.id, short:false});
+            fields.push({title: "req temp", value: req, short:false});
             var message = {
                 response_type: "in_channel",
                 text: "A new case has been created:",
