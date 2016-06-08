@@ -27,8 +27,8 @@ function execute(req, res) {
     var description = params[1];
     
             // BELOW IS MY DEBUG CODE
-            // console.log("--------------req-----------");
-            // console.log(req);    
+             console.log("--------------req-----------");
+             console.log(req);    
 
 
 
@@ -62,6 +62,10 @@ slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }
 
 // BACK TO BUSINESS AND INSERT CASE IN SFDC
 // I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
+
+
+    var subject = "Slack case from "+response.user.profile.real_name_normalized;
+    var description = req.body.text;
 
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
