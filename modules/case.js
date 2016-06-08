@@ -27,8 +27,8 @@ function execute(req, res) {
     var description = params[1];
     
             // BELOW IS MY DEBUG CODE
-            // console.log("--------------req-----------");
-            // console.log(req);    
+             console.log("--------------req.body-----------");
+             console.log(req.body);    
 
 
 
@@ -85,7 +85,6 @@ slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Link", value: SFDC_URL + resp.id, short:false});
-            fields.push({title: "req temp", value: req, short:false});
             var message = {
                 response_type: "in_channel",
                 text: "A new case has been created:",
