@@ -46,6 +46,11 @@ function execute(req, res) {
 var Slack = require('slack-node');
 
 slack = new Slack(SLACK_SECURITY_TOKEN);
+
+
+slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response) {
+    console.log(response);
+}
  
 slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
 
