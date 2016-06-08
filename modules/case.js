@@ -25,7 +25,7 @@ function execute(req, res) {
             // console.log("--------------req.body-----------");
             // console.log(req.body);  
     
-    var UserID=req.body.user_id;
+    UserID=req.body.user_id;
     console.log("--------------original UserID-----------"+UserID);
 
     // HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
