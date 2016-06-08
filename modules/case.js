@@ -60,8 +60,15 @@ slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }
 // DESCRIPTION = "the whole text typed by the user"
 //    var subject = "Slack case from "+req.body.user_name;
 //    var description = req.body.text;
-    var subject = "Slack case from "+response.user.profile.real_name_normalized+" in "+req.body.channel_name;
-    var description = req.body.text;
+
+    var params = req.body.text.split(":");
+    var subject = params[0];
+    var description = params[1];
+    if (description == '') {
+        var subject = "Slack case from "+response.user.profile.real_name_normalized+" in "+req.body.channel_name;
+        var description = req.body.text;
+    }
+
 
 
 // BACK TO BUSINESS AND INSERT CASE IN SFDC
