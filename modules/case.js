@@ -26,6 +26,7 @@ function execute(req, res) {
             // console.log(req.body);  
     
     var UserID=req.body.user_id;
+    console.log("--------------original UserID-----------"+UserID);
 
     // HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
     var Slack = require('slack-node');
@@ -33,18 +34,22 @@ function execute(req, res) {
 
     var params = req.body.text.split(" ");
     var first = params[0];
+    
+    console.log("--------------first-----------"+first);
 
     if (first.charAt(0)=='@') {
         // THIS CASE IS BEING CREATED FOR SOMEONE ELSE
         // HOW DO I GET THE USER ID BASED ON THE USERNAME??
         
         var username=first.slice(1)
+    	console.log("--------------username-----------"+username);
         
         slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response) {
             console.log();
             for (var i = 0, len = response.members.length; i < len; i++) {
                 if (username == response.members[i].name) {
 	                UserID = response.members[i].id;
+		    	console.log("--------------updated UserID-----------"+UserID);
 	                break;
                 }
             }
