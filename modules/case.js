@@ -22,26 +22,21 @@ function execute(req, res) {
         return;
     }
     
-    var params = req.body.text.split(":");
-    var subject = params[0];
-    var description = params[1];
-    
+
             // BELOW IS MY DEBUG CODE
-             console.log("--------------req.body-----------");
-             console.log(req.body);    
+            // console.log("--------------req.body-----------");
+            // console.log(req.body);    
 
 
-
-
-
-
-
-
-
-
-
-
-
+    var params = req.body.text.split(" ");
+    var first = params[0];
+    var second = params[1];
+    
+    if (first.charAt(0)=='@') {
+        // THIS CASE IS BEING CREATED FOR SOMEONE ELSE
+        // HOW DO I GET THE USER ID BASED ON THE USERNAME??
+         console.log("--------------first-----------"+first);
+    }
 
 
 
@@ -61,13 +56,9 @@ slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }
 //    var subject = "Slack case from "+req.body.user_name;
 //    var description = req.body.text;
 
-    var params = req.body.text.split(":");
-    var subject = params[0];
-    var description = params[1];
-    if (description == '') {
-        var subject = "Slack case from "+response.user.profile.real_name_normalized+" in "+req.body.channel_name;
-        var description = req.body.text;
-    }
+
+    var subject = "Slack case from "+response.user.profile.real_name_normalized+" in "+req.body.channel_name;
+    var description = req.body.text;
 
 
 
