@@ -56,6 +56,7 @@ function execute(req, res) {
         });
     }
     //console.log("--------------first-----------"+first);
+    console.log("--------------UserID after the loop-----------"+UserID);
     
     slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":UserID }, function(err, response) {
 
