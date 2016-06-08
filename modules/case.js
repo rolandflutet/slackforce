@@ -48,12 +48,6 @@ function execute(req, res) {
 
 
 
-    var c = nforce.createSObject('Case');
-    c.set('subject', subject);
-    c.set('description', description);
-    c.set('origin', 'Slack');
-    c.set('status', 'New');
-//    c.set('SuppliedEmail', UserEmail);  
 
 
 
@@ -65,16 +59,20 @@ var Slack = require('slack-node');
 slack = new Slack(SLACK_SECURITY_TOKEN);
  
 slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
-c.set('SuppliedEmail', response.user.profile.email);  
-  });
- 
-
 
 // BACK TO BUSINESS AND INSERT CASE IN SFDC
+// I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
 
-
-
-    org.insert({ sobject: c}, function(err, resp) {
+    var c = nforce.createSObject('Case');
+    c.set('subject', subject);
+    c.set('description', description);
+    c.set('origin', 'Slack');
+    c.set('status', 'New');
+    //    c.set('SuppliedEmail', UserEmail);  
+    c.set('SuppliedEmail', response.user.profile.email);  
+    
+    
+       org.insert({ sobject: c}, function(err, resp) {
         if (err) {
             console.error(err);
             res.send("An error occurred while creating a case");
@@ -92,7 +90,16 @@ c.set('SuppliedEmail', response.user.profile.email);
             };
             res.json(message);
         }
-    });
+    }); 
+    
+    
+  });
+ 
+
+
+
+
+
 }
 
 exports.execute = execute;
