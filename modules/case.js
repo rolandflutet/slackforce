@@ -16,50 +16,50 @@ var nforce = require('nforce'),
     
 
 function execute(req, res) {
-
     if (req.body.token != CASE_TOKEN) {
         res.send("Invalid token");
         return;
     }
-    
 
             // BELOW IS MY DEBUG CODE
             // console.log("--------------req.body-----------");
-            // console.log(req.body);    
+            // console.log(req.body);  
+    
+    var UserID=req.body.user_id;
 
+    // HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
+    var Slack = require('slack-node');
+    slack = new Slack(SLACK_SECURITY_TOKEN);
 
     var params = req.body.text.split(" ");
     var first = params[0];
-    var second = params[1];
-    
+
     if (first.charAt(0)=='@') {
         // THIS CASE IS BEING CREATED FOR SOMEONE ELSE
         // HOW DO I GET THE USER ID BASED ON THE USERNAME??
+        
+        username=first.slice(1)
+        
+        slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response) {
+            console.log();
+            for (var i = 0, len = response.members.length; i < len; i++) {
+                if username == response.members[i].name {
+	                UserID = response.members[i].id;
+	                break;
+                }
+            }
+        });
     }
-    console.log("--------------first-----------"+first);
+    //console.log("--------------first-----------"+first);
+    
+    slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":UserID }, function(err, response) {
 
 
-
-// HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
-
-
-var Slack = require('slack-node');
-
-slack = new Slack(SLACK_SECURITY_TOKEN);
-
-
-slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response) {
-    console.log(response.members);
-});
- 
-slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }, function(err, response) {
-
-
-// HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
-// SUBJECT = "Slack case from username"
-// DESCRIPTION = "the whole text typed by the user"
-//    var subject = "Slack case from "+req.body.user_name;
-//    var description = req.body.text;
+    // HERE I'M GOING TO TRY AND CHANGE THE CONTENT OF THE CASE
+    // SUBJECT = "Slack case from username"
+    // DESCRIPTION = "the whole text typed by the user"
+    //    var subject = "Slack case from "+req.body.user_name;
+    //    var description = req.body.text;
 
 
     var subject = "Slack case from "+response.user.profile.real_name_normalized+" in "+req.body.channel_name;
@@ -67,9 +67,8 @@ slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }
 
 
 
-// BACK TO BUSINESS AND INSERT CASE IN SFDC
-// I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
-
+    // BACK TO BUSINESS AND INSERT CASE IN SFDC
+    // I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
     c.set('description', description);
@@ -77,8 +76,7 @@ slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":req.body.user_id }
     c.set('status', 'New');
     //    c.set('SuppliedEmail', UserEmail);  
     c.set('SuppliedEmail', response.user.profile.email);  
-    
-    
+
        org.insert({ sobject: c}, function(err, resp) {
         if (err) {
             console.error(err);
