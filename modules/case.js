@@ -50,6 +50,7 @@ function execute(req, res) {
                 if (username == response.members[i].name) {
 	                UserID = response.members[i].id;
 		    	console.log("--------------updated UserID-----------"+UserID);
+		    	cb(UserID);
 	                break;
                 }
             }
