@@ -15,20 +15,6 @@ var nforce = require('nforce'),
     
 var Slack = require('slack-node');
 slack = new Slack(SLACK_SECURITY_TOKEN);
-
-function GetUserId (response,username){
-        slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response, UserID) {
-            console.log();
-            for (var i = 0, len = response.members.length; i < len; i++) {
-                if (username == response.members[i].name) {
-	                UserID = response.members[i].id;
-		    	console.log("--------------updated UserID-----------"+UserID);
-		    	return UserID;
-	                break;
-                }
-            }
-        });
-}
     
 
 function execute(req, res) {
@@ -57,8 +43,7 @@ function execute(req, res) {
         
         var username=first.slice(1)
     	console.log("--------------username-----------"+username);
-    	UserID=GetUserId(response,username);
-        /*
+        
         slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response, UserID) {
             console.log();
             for (var i = 0, len = response.members.length; i < len; i++) {
@@ -69,7 +54,6 @@ function execute(req, res) {
                 }
             }
         });
-        */
     }
     //console.log("--------------first-----------"+first);
     console.log("--------------UserID after the loop-----------"+UserID);
