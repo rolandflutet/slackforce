@@ -13,6 +13,8 @@ var nforce = require('nforce'),
     	SFDC_URL='https://login.salesforce.com/';
     }
     
+var Slack = require('slack-node');
+slack = new Slack(SLACK_SECURITY_TOKEN);
     
 
 function execute(req, res) {
@@ -29,8 +31,6 @@ function execute(req, res) {
     console.log("--------------original UserID-----------"+UserID);
 
     // HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
-    var Slack = require('slack-node');
-    slack = new Slack(SLACK_SECURITY_TOKEN);
 
     var params = req.body.text.split(" ");
     var first = params[0];
