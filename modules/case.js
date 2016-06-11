@@ -44,12 +44,13 @@ function execute(req, res) {
         var username=first.slice(1)
     	console.log("--------------username-----------"+username);
         
-        slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response, UserID) {
+        slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response, UserID, callback) {
             console.log();
             for (var i = 0, len = response.members.length; i < len; i++) {
                 if (username == response.members[i].name) {
 	                UserID = response.members[i].id;
 		    	console.log("--------------updated UserID-----------"+UserID);
+		    	callback(null,UserID);
 	                break;
                 }
             }
