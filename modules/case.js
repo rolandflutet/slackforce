@@ -16,7 +16,7 @@ var nforce = require('nforce'),
 var Slack = require('slack-node');
 slack = new Slack(SLACK_SECURITY_TOKEN);
 
-function GetUserId (response,username){
+function GetUserId (username){
         slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response, UserID) {
             console.log();
             for (var i = 0, len = response.members.length; i < len; i++) {
@@ -57,7 +57,7 @@ function execute(req, res) {
         
         var username=first.slice(1)
     	console.log("--------------username-----------"+username);
-    	UserID=GetUserId(response,username);
+    	UserID=GetUserId(username);
         /*
         slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response, UserID) {
             console.log();
