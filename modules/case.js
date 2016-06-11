@@ -72,7 +72,18 @@ function execute(req, res) {
     var description = req.body.text;
 
 
+// LET'S TRY AND GET THE CONTACT ID FOR THIS EMAIL ADDRESS
 
+    var q1 = "SELECT Id FROM Contact WHERE Email LIKE '%" + response.user.profile.email + "%' LIMIT 1";
+    org.query({query: q1}, function(err3, resp3) {
+        if (err3) {
+            console.error(err3);
+            res.send("An error as occurred");
+            return;
+        }
+        
+        
+        //NOW THAT WE HAVE THE CONTACT ID, 
     // BACK TO BUSINESS AND INSERT CASE IN SFDC
     // I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
     var c = nforce.createSObject('Case');
@@ -82,6 +93,12 @@ function execute(req, res) {
     c.set('status', 'New');
     //    c.set('SuppliedEmail', UserEmail);  
     c.set('SuppliedEmail', response.user.profile.email);  
+    
+        //IF WE HAVE A CONTACT ID, LET'S ADD IT HERE
+        if (resp3.records && resp3.records.length>0) {
+        	var contact = resp3.records[0];
+		c.set('ContactID', contact.get("Id"));
+        }
 
        org.insert({ sobject: c}, function(err, resp) {
         if (err) {
@@ -103,6 +120,33 @@ function execute(req, res) {
         }
     }); 
     
+            
+        
+        
+        
+        
+        
+        
+        
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
   });
  
