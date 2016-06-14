@@ -24,8 +24,10 @@ function execute(req, res) {
     }
 
     //DEBUG
-    console.log("--------------req.url-----------");
-    console.log(req.url);
+    console.log("--------------req.hostname-----------");
+    console.log(req.hostname);
+    console.log("--------------res.hostname-----------");
+    console.log(res.hostname);
 
 
             // BELOW IS MY DEBUG CODE
