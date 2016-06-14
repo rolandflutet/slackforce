@@ -27,6 +27,7 @@ function execute(req, res) {
     console.log("--------------res.connection.params-----------"+res.connection.params);
     console.log(res.connection);
     // connection params response_url
+    res.send("Processing your request...");
 
 
             // BELOW IS MY DEBUG CODE
@@ -94,7 +95,7 @@ function execute(req, res) {
     // I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
-    c.set('description', description+res);
+    c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
     //    c.set('SuppliedEmail', UserEmail);  
