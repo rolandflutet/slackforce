@@ -24,10 +24,8 @@ function execute(req, res) {
     }
 
     //DEBUG
-    console.log("--------------req.hostname-----------");
-    console.log(req.hostname);
-    console.log("--------------res.hostname-----------");
-    console.log(res.hostname);
+    console.log("--------------res-----------");
+    console.log(res);
 
 
             // BELOW IS MY DEBUG CODE
@@ -95,7 +93,7 @@ function execute(req, res) {
     // I HAVE TO DO IT IN HERE BECAUSE I HAVE NOT BEEN ABLE TO UNDERSTAND WHY THE VARIABLE DOESN'T KEEP THE VALUE OUTSIDE
     var c = nforce.createSObject('Case');
     c.set('subject', subject);
-    c.set('description', description);
+    c.set('description', description+res);
     c.set('origin', 'Slack');
     c.set('status', 'New');
     //    c.set('SuppliedEmail', UserEmail);  
