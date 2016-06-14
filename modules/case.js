@@ -27,7 +27,8 @@ function execute(req, res) {
     console.log("--------------res.connection.params-----------"+res.connection.params);
     console.log(res.connection);
     // connection params response_url
-    res.send("Processing your request...");
+    var resdup = res;
+    resdup.send("Processing your request...");
 
 
             // BELOW IS MY DEBUG CODE
