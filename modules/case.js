@@ -24,8 +24,8 @@ function execute(req, res) {
     }
 
     //DEBUG
-    console.log("--------------res.connection.params-----------"+res.connection.params);
-    console.log(res.connection);
+    //console.log("--------------res.connection.params-----------"+res.connection.params);
+    //console.log(res.connection);
     // connection params response_url
     //var resdup = res;
     //resdup.send("Processing your request...");
@@ -36,35 +36,35 @@ function execute(req, res) {
             // console.log(req.body);  
     
     UserID=req.body.user_id;
-    console.log("--------------original UserID-----------"+UserID);
+    //console.log("--------------original UserID-----------"+UserID);
 
     // HERE I'M GOING TO TRY AND GET MORE USER INFO FROM SLACK
 
     var params = req.body.text.split(" ");
     var first = params[0];
     
-    console.log("--------------first-----------"+first);
+    //console.log("--------------first-----------"+first);
 
     if (first.charAt(0)=='@') {
         // THIS CASE IS BEING CREATED FOR SOMEONE ELSE
         // HOW DO I GET THE USER ID BASED ON THE USERNAME??
         
         var username=first.slice(1)
-    	console.log("--------------username-----------"+username);
+    	//console.log("--------------username-----------"+username);
         
         slack.api("users.list", {"token": SLACK_SECURITY_TOKEN}, function(err, response, UserID) {
             console.log();
             for (var i = 0, len = response.members.length; i < len; i++) {
                 if (username == response.members[i].name) {
 	                UserID = response.members[i].id;
-		    	console.log("--------------updated UserID-----------"+UserID);
+		    	//console.log("--------------updated UserID-----------"+UserID);
 	                break;
                 }
             }
         });
     }
     //console.log("--------------first-----------"+first);
-    console.log("--------------UserID after the loop-----------"+UserID);
+    //console.log("--------------UserID after the loop-----------"+UserID);
     
     slack.api("users.info", {"token": SLACK_SECURITY_TOKEN,"user":UserID }, function(err, response) {
 
@@ -113,6 +113,10 @@ function execute(req, res) {
             console.error(err);
             res.send("An error occurred while creating a case");
         } else {
+        	
+	//DEBUG
+	console.log("--------------resp-----------");
+	console.log(resp);
             var fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
