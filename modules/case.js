@@ -23,6 +23,11 @@ function execute(req, res) {
         return;
     }
 
+    //DEBUG
+    console.log("--------------res-----------");
+    console.log(res);
+
+
             // BELOW IS MY DEBUG CODE
             // console.log("--------------req.body-----------");
             // console.log(req.body);  
