@@ -14,6 +14,10 @@ function execute(req, res) {
         res.send("Invalid token");
         return;
     }
+    
+    //DEBUG
+    console.log("--------------res-----------");
+    console.log(res);
 
     var limit = req.body.text;
     if (!limit || limit=="") limit = 5;
