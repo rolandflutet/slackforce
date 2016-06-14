@@ -24,7 +24,7 @@ function execute(req, res) {
     }
 
     //DEBUG
-    console.log("--------------res.params-----------"+res.connection);
+    console.log("--------------res.connection.params-----------"+res.connection.params);
     // connection params response_url
 
 
