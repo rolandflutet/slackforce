@@ -113,15 +113,11 @@ function execute(req, res) {
             console.error(err);
             res.send("An error occurred while creating a case");
         } else {
-        	
-	//DEBUG
-	console.log("--------------resp-----------");
-	console.log(resp);
             var fields = [];
             fields.push({title: "Subject", value: subject, short:false});
             fields.push({title: "Description", value: description, short:false});
             //fields.push({title: "Link", value: SFDC_URL + resp.id, short:false});
-            fields.push({title: "Case Number", value: resp.CaseNumber, short:false});
+            fields.push({title: "Case created!", value: "You will receive an email shortly to confirm", short:false});
             var message = {
                 response_type: "in_channel",
                 text: "A new case has been created:",
