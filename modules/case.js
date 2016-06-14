@@ -24,7 +24,7 @@ function execute(req, res) {
     }
 
     //DEBUG
-    console.log("--------------res.response_url-----------"+res.response_url);
+    console.log("--------------res.ServerResponse.response_url-----------"+res.ServerResponse.response_url);
 
 
             // BELOW IS MY DEBUG CODE
